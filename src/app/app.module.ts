@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { ListComponent } from './list/list.component';
+import { ChallengeDetailComponent } from './challenge-detail/challenge-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ListComponent,
+    ChallengeDetailComponent
   ],
   imports: [
     BrowserModule,
