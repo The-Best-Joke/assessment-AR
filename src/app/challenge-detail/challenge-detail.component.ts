@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { Challenge } from '../challenge';
 
 @Component({
   selector: 'app-challenge-detail',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChallengeDetailComponent implements OnInit {
 
-  constructor() { }
+  challenge: Challenge;
+
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location
+    ) { }
 
   ngOnInit(): void {
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

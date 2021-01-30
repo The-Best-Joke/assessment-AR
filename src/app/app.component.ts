@@ -13,11 +13,11 @@ export class AppComponent {
   title = 'Challenge Logo Viewer App';
 
   constructor(
-  	// private challengesService: ChallengesService
-  	) { }
+    // private challengesService: ChallengesService
+    ) { }
 
   // ngOnInit() {
-  // 	this.challenges$ = this.challengesService.getChallenges();
+  //  this.challenges$ = this.challengesService.getChallenges();
   // }
 
 }
