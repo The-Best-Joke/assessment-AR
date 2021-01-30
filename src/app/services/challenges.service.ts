@@ -24,7 +24,9 @@ const GET_CHALLENGES = gql`
 })
 export class ChallengesService {
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo) {
+
+  }
 
   getChallenges(): Observable<ApolloQueryResult<any>> {
     return this.apollo
@@ -32,10 +34,14 @@ export class ChallengesService {
         query: GET_CHALLENGES,
       })
       .valueChanges
-      .pipe(map(result => {
-        if (result.data) {
-          return (result.data as any).allChallenges.edges;
-        }
-      }));
+      .pipe(
+        map(
+          result => {
+            if (result.data) {
+              return (result.data as any).allChallenges.edges;
+            }
+          }
+        )
+      );
   }
 }

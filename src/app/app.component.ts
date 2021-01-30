@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChallengesService } from './services/challenges.service';
 
@@ -10,9 +10,13 @@ import { ChallengesService } from './services/challenges.service';
 export class AppComponent {
 
   challenges$: Observable<any>;
-  constructor(private challengesService: ChallengesService) {
-    this.challenges$ = this.challengesService.getChallenges();
-  }
 
+  constructor(
+  	private challengesService: ChallengesService
+  	) { }
+
+  ngOnInit() {
+  	this.challenges$ = this.challengesService.getChallenges();
+  }
 
 }
