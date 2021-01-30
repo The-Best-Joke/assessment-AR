@@ -1,1 +1,3 @@
-<p>list works!</p>
+<pre *ngFor="let challenge of challenges$ | async">{{ challenge | json }}
+  <hr>
+</pre>
