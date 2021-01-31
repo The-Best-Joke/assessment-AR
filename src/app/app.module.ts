@@ -13,7 +13,7 @@ import { ChallengeDetailComponent } from './challenge-detail/challenge-detail.co
   declarations: [
     AppComponent,
     ListComponent,
-    ChallengeDetailComponent
+    ChallengeDetailComponent,
   ],
   imports: [
     BrowserModule,

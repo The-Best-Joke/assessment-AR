@@ -1,3 +1,9 @@
-<pre *ngFor="let challenge of challenges$ | async">{{ challenge | json }}
-  <hr>
-</pre>
+<ul>
+  <li *ngFor="let challenge of challenges | async">
+  	<a routerLink="/list/{{challenge.id}}">
+        <h3>{{ challenge.title }}</h3>
+        <p>{{ challenge.teaser }}</p>
+    </a>
+    <!-- <app-challenge-detail [challenge]="challenge"></app-challenge-detail> -->
+  </li>
+</ul>

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Challenge } from '../challenge';
+import { Logo } from '../logo';
 
 @Component({
   selector: 'app-challenge-detail',
@@ -11,7 +11,10 @@ import { Challenge } from '../challenge';
 })
 export class ChallengeDetailComponent implements OnInit {
 
-  challenge: Challenge;
+  @Input() challenge: any;
+  title: string;
+  teaser: string;
+  logo: Logo;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,9 +22,26 @@ export class ChallengeDetailComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.setTitle();
+    this.setTeaser();
+    this.setLogo();
   }
 
-  goBack(): void {
+  setTitle(): void {
+    this.title = this.challenge.node.title[0].text;
+  }
+
+  setTeaser(): void {
+    this.teaser = this.challenge.node.teaser[0].text;
+  }
+
+  setLogo(): void {
+    this.logo.width  = this.challenge.node.logo.dimensions.width;
+    this.logo.height = this.challenge.node.logo.dimensions.height;
+    this.logo.url    = this.challenge.node.logo.url;
+  }
+
+  setBack(): void {
     this.location.back();
   }
 
