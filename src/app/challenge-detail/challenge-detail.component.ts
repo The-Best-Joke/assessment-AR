@@ -2,7 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { ChallengesService } from '../services/challenges.service';
+
 import { Logo } from '../logo';
+import { Challenge } from '../challenge';
 
 @Component({
   selector: 'app-challenge-detail',
@@ -11,34 +14,35 @@ import { Logo } from '../logo';
 })
 export class ChallengeDetailComponent implements OnInit {
 
-  @Input() challenge: any;
-  title: string;
-  teaser: string;
+  challenge: Challenge;
   logo: Logo;
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private challengesService: ChallengesService
     ) { }
 
   ngOnInit(): void {
-    this.setTitle();
-    this.setTeaser();
-    this.setLogo();
+    this.getChallengeDetail();
   }
 
-  setTitle(): void {
-    this.title = this.challenge.node.title[0].text;
-  }
-
-  setTeaser(): void {
-    this.teaser = this.challenge.node.teaser[0].text;
-  }
-
-  setLogo(): void {
-    this.logo.width  = this.challenge.node.logo.dimensions.width;
-    this.logo.height = this.challenge.node.logo.dimensions.height;
-    this.logo.url    = this.challenge.node.logo.url;
+  getChallengeDetail():void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.challengesService.getChallenge(id)
+      .subscribe(challenge => {
+        this.logo = {
+          height: (challenge.hasOwnProperty('height') ? challenge.height : null),
+          width: (challenge.hasOwnProperty('width') ? challenge.width : null),
+          url: (challenge.hasOwnProperty('url') ? challenge.url : null),
+        }
+        this.challenge = {
+          id: challenge.id,
+          title: challenge.title,
+          teaser: challenge.teaser,
+          logo: this.logo
+        }
+      });
   }
 
   setBack(): void {

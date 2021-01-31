@@ -38,22 +38,51 @@ export class ChallengesService {
       .pipe(map(result => {
         if (result.data) {
           let queryResult = (result.data as any).allChallenges.edges;
-          let challenges = [];
-          let counter = 0;
+          let challenges  = [];
+          let counter     = 0;
           for (let entry of queryResult) {
-            let challenge = {};
-            challenge['id'] = counter;
-            challenge['title'] = entry.node.title[0].text;
+            let challenge       = {};
+            challenge['id']     = counter;
+            challenge['title']  = entry.node.title[0].text;
             challenge['teaser'] = entry.node.teaser[0].text;
             if (entry.node.logo) {
               challenge['height'] = entry.node.logo.dimensions.height;
-              challenge['width'] = entry.node.logo.dimensions.width;
-              challenge['url'] = entry.node.logo.url;
+              challenge['width']  = entry.node.logo.dimensions.width;
+              challenge['url']    = entry.node.logo.url;
             }
             counter++;
             challenges.push(challenge);
           }
           return challenges;
+        }
+      }));
+  }
+
+  getChallenge(id: number): Observable<any> {
+    return this.apollo
+      .watchQuery({
+        query: GET_CHALLENGES,
+      })
+      .valueChanges
+      .pipe(map(result => {
+        if (result.data) {
+          let queryResult = (result.data as any).allChallenges.edges;
+          let counter     = 0;
+          for (let entry of queryResult) {
+            let challenge       = {};
+            challenge['id']     = counter;
+            challenge['title']  = entry.node.title[0].text;
+            challenge['teaser'] = entry.node.teaser[0].text;
+            if (entry.node.logo) {
+              challenge['height'] = entry.node.logo.dimensions.height;
+              challenge['width']  = entry.node.logo.dimensions.width;
+              challenge['url']    = entry.node.logo.url;
+            }
+            if (counter == id) {
+              return challenge;
+            }
+            counter++;
+          }
         }
       }));
   }
