@@ -1,5 +1,7 @@
-<div>
+<div *ngIf="challenge">
+  <button (click)="goBack()">Back to the list</button>
   <h2>{{ challenge.title }}</h2>
   <h4>{{ challenge.teaser }}</h4>
-  <h4 *ngIf="challenge.logo.height">{{ challenge.logo.height }}</h4>
+  <button (click)="setFavorite()"></button>
+  <span [(ngModule)]="challenge.favorite">This is now: {{ challenge.favorite }}</span>
 </div>

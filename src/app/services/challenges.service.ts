@@ -20,9 +20,7 @@ const GET_CHALLENGES = gql`
 `;
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ChallengesService {
 
   constructor(
@@ -58,32 +56,45 @@ export class ChallengesService {
       }));
   }
 
-  getChallenge(id: number): Observable<any> {
-    return this.apollo
-      .watchQuery({
-        query: GET_CHALLENGES,
-      })
-      .valueChanges
-      .pipe(map(result => {
-        if (result.data) {
-          let queryResult = (result.data as any).allChallenges.edges;
-          let counter     = 0;
-          for (let entry of queryResult) {
-            let challenge       = {};
-            challenge['id']     = counter;
-            challenge['title']  = entry.node.title[0].text;
-            challenge['teaser'] = entry.node.teaser[0].text;
-            if (entry.node.logo) {
-              challenge['height'] = entry.node.logo.dimensions.height;
-              challenge['width']  = entry.node.logo.dimensions.width;
-              challenge['url']    = entry.node.logo.url;
-            }
-            if (counter == id) {
-              return challenge;
-            }
-            counter++;
-          }
-        }
-      }));
+  // getChallenge(id: number): Observable<any> {
+  //   // TODO: Refactor getChallenge so that localStorage is implemented instead of
+  //   // doing Apollo calls.
+  //   return this.apollo
+  //     .watchQuery({
+  //       query: GET_CHALLENGES,
+  //     })
+  //     .valueChanges
+  //     .pipe(map(result => {
+  //       if (result.data) {
+  //         let queryResult = (result.data as any).allChallenges.edges;
+  //         let counter     = 0;
+  //         for (let entry of queryResult) {
+  //           let challenge       = {};
+  //           challenge['id']     = counter;
+  //           challenge['title']  = entry.node.title[0].text;
+  //           challenge['teaser'] = entry.node.teaser[0].text;
+  //           if (entry.node.logo) {
+  //             challenge['height'] = entry.node.logo.dimensions.height;
+  //             challenge['width']  = entry.node.logo.dimensions.width;
+  //             challenge['url']    = entry.node.logo.url;
+  //           }
+  //           if (counter === id) {
+  //             return challenge;
+  //           }
+  //           counter++;
+  //         }
+  //       }
+  //     }));
+  // }
+
+  getChallenge(id: number): Challenge {
+    let challenges: Challenge[] = JSON.parse(localStorage.getItem("challenges"));
+    return challenges.find(challenge => challenge.id === id);
+  }
+
+  setChallenge(challenge: Challenge): void {
+    let challenges: Challenge[] = JSON.parse(localStorage.getItem("challenges"));
+    challenges.find(entry => entry.id === challenge.id).favorite = challenge.favorite;
+    localStorage.setItem("challenges", JSON.stringify(challenges));
   }
 }

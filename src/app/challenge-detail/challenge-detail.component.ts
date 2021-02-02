@@ -29,24 +29,16 @@ export class ChallengeDetailComponent implements OnInit {
 
   getChallengeDetail():void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.challengesService.getChallenge(id)
-      .subscribe(challenge => {
-        this.logo = {
-          height: (challenge.hasOwnProperty('height') ? challenge.height : null),
-          width: (challenge.hasOwnProperty('width') ? challenge.width : null),
-          url: (challenge.hasOwnProperty('url') ? challenge.url : null),
-        }
-        this.challenge = {
-          id: challenge.id,
-          title: challenge.title,
-          teaser: challenge.teaser,
-          logo: this.logo
-        }
-      });
+    this.challenge = this.challengesService.getChallenge(id);
   }
 
-  setBack(): void {
+  goBack(): void {
     this.location.back();
+  }
+
+  setFavorite(): void {
+    this.challenge.favorite = !this.challenge.favorite;
+    this.challengesService.setChallenge(this.challenge);
   }
 
 }
