@@ -11,11 +11,17 @@
         </a>
       </div>
       <div class="heart-container">
-        <span class="heart"></span>
         <button 
+          *ngIf="challenge.favorite; else notFavorite"
           class="heart-shape-red"
           (click)="setFavorite(challenge.id)">
         </button>
+        <ng-template #notFavorite>
+          <button 
+          class="heart-shape-grey"
+          (click)="setFavorite(challenge.id)">
+        </button>
+        </ng-template>
       </div>
       <span [(ngModule)]="challenge.favorite">This is now: {{ challenge.favorite }}</span>
     </div>
