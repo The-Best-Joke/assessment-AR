@@ -1,0 +1,89 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 25px;
+  margin: 25px;
+}
+
+a:link {
+  color: #333333;
+  text-decoration: none;
+
+}
+
+a:visited {
+  text-decoration: none;
+
+}
+
+.list-heading {
+  margin-top: 5px;
+}
+
+.list-subheading {
+  font-weight: 1;
+  color: #666666;
+}
+
+.challengeEntry {
+  background-color: #f3f3f3f3;
+}
+
+.challengeEntry {
+  width: 550px;
+  border-radius: 25px;
+}
+
+.link-container {
+  width: 500px;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.heart-container {
+  width: 50px;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.heart-shape-red {
+  border-radius: 50%;
+  height: 35px;
+  margin: 4em auto 0;
+  text-align: center;
+  width: 35px;
+}
+
+.heart {
+  content: '&#9829';
+}
+
+.heart-shape-red:before{
+  color: #f3166e;
+  content: "❤";
+  font-size: 2.3em;
+  position: relative;
+  top: 0px;
+  left: -4px;
+}
+
+.heart-shape-grey {
+  border-radius: 50%;
+  height: 35px;
+  margin: 4em auto 0;
+  text-align: center;
+  width: 35px;
+}
+
+.heart-shape-grey:before{
+  color: #333333;
+  content: "❤";
+  font-size: 2.3em;
+  position: relative;
+  top: 0px;
+  left: -4px;
+}

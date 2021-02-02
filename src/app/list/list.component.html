@@ -1,12 +1,22 @@
 <h1>{{ title }}</h1>
 <ul>
-  <li *ngFor="let challenge of challenges">
+  <li 
+  *ngFor="let challenge of challenges"
+  class="challengeEntry">
     <div *ngIf="challenge">
-      <a routerLink="/list/{{challenge.id}}">
-          <h3>{{ challenge.title }}</h3>
-          <p>{{ challenge.teaser }}</p>
-      </a>
-      <button (click)="setFavorite(challenge.id)"></button>
+      <div class="link-container">
+        <a routerLink="/list/{{challenge.id}}">
+          <h3 class="list-heading">{{ challenge.title }}</h3>
+          <h4 class="list-subheading">{{ challenge.teaser }}</h4>
+        </a>
+      </div>
+      <div class="heart-container">
+        <span class="heart"></span>
+        <button 
+          class="heart-shape-red"
+          (click)="setFavorite(challenge.id)">
+        </button>
+      </div>
       <span [(ngModule)]="challenge.favorite">This is now: {{ challenge.favorite }}</span>
     </div>
   </li>
