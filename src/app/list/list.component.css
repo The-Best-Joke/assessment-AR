@@ -18,12 +18,17 @@ li {
 a:link {
   color: #333333;
   text-decoration: none;
+  cursor: pointer;
+
+}
+
+a:hover {
+  text-decoration: underline;
 
 }
 
 a:visited {
   text-decoration: none;
-
 }
 
 .list-heading {
@@ -64,6 +69,7 @@ a:visited {
   margin: 3.5em auto 0;
   text-align: center;
   width: 35px;
+  cursor: pointer;
 }
 
 .heart-shape-red:before{
@@ -81,6 +87,7 @@ a:visited {
   margin: 3.5em auto 0;
   text-align: center;
   width: 35px;
+  cursor: pointer;
 }
 
 .heart-shape-grey:before{

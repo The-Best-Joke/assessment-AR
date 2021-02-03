@@ -1,9 +1,14 @@
+h3 {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .heart-shape-red {
   border-radius: 50%;
   height: 35px;
   margin: 3.3em auto 0;
   text-align: center;
   width: 35px;
+  cursor: pointer;
 }
 
 .heart-shape-red:before{
@@ -21,6 +26,7 @@
   margin: 3.3em auto 0;
   text-align: center;
   width: 35px;
+  cursor: pointer;
 }
 
 .heart-shape-grey:before{
@@ -60,3 +66,16 @@
   display: inline-block;
   overflow: hidden;
 }
+
+.backButton {
+  margin: 25px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border: 0px;
+}
+
+.backButton:hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
+}
+
