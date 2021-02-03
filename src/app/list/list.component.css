@@ -1,3 +1,11 @@
+h1, h3 {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+h4 {
+  font-family: 'Lato', sans-serif;
+}
+
 ul {
   list-style-type: none;
 }
@@ -40,7 +48,7 @@ a:visited {
   width: 500px;
   height: 100px;
   display: inline-block;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .heart-container {
